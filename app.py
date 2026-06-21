@@ -309,36 +309,6 @@ import subprocess, threading, time
 # ── PASTE YOUR NGROK AUTHTOKEN HERE ──
 NGROK_TOKEN = "3En2Zpwfmw09FDLDUKh7ZgbGzlm_74TsFce3ypqe2dMf1y6iF"   # 👈 your token here
 
-# Kill ALL existing processes
-subprocess.run(['pkill', '-f', 'streamlit'], capture_output=True)
-subprocess.run(['pkill', '-f', 'ngrok'], capture_output=True)
-ngrok.kill()
-time.sleep(3)
 
-# Set ngrok authtoken
-conf.get_default().auth_token = NGROK_TOKEN
 
-# Start Streamlit in background
-def run_streamlit():
-    subprocess.run([
-        'streamlit', 'run', 'mindbloom_app.py',
-        '--server.port', '8501',
-        '--server.headless', 'true',
-        '--server.enableCORS', 'false',
-        '--server.enableXsrfProtection', 'false',
-    ])
 
-thread = threading.Thread(target=run_streamlit, daemon=True)
-thread.start()
-time.sleep(5)
-
-# Create fresh tunnel
-public_url = ngrok.connect(8501)
-
-print("=" * 55)
-print("🌿  MindBloom is LIVE!")
-print("=" * 55)
-print(f"\n🔗  Open this URL:\n    {public_url}\n")
-print("💡  Enter your FREE Groq API key in the sidebar")
-print("    Get one at: https://console.groq.com")
-print("=" * 55)
