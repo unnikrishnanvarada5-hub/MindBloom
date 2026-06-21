@@ -305,7 +305,6 @@ else:
 print("✅ App updated with green theme + funny GIFs!")
 
 import subprocess, threading, time
-from pyngrok import conf, ngrok, process
 
 # ── PASTE YOUR NGROK AUTHTOKEN HERE ──
 NGROK_TOKEN = "3En2Zpwfmw09FDLDUKh7ZgbGzlm_74TsFce3ypqe2dMf1y6iF"   # 👈 your token here
