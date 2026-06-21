@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.markdown(\"\"\"
+st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 :root{--green:#4caf85;--mint:#a8d5b5;--sage:#d4ede1;--white:#f8fdf9;--charcoal:#2d3a32;--glass:rgba(255,255,255,0.75)}
@@ -35,7 +35,7 @@ section[data-testid=stSidebar]{background:linear-gradient(180deg,#f0faf4,#e8f5ee
 h2,h3{font-family:'Playfair Display',serif!important;color:#2d3a32!important}
 #MainMenu,footer{visibility:hidden}
 </style>
-\"\"\", unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 QUOTES = [
     ("You don't have to control your thoughts. You just have to stop letting them control you.", "Dan Millman"),
@@ -127,12 +127,12 @@ with st.sidebar:
         unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown(\"\"\"<div style='font-size:.75rem;color:#7a9e88;text-align:center;line-height:1.6'>
+    st.markdown("""<div style='font-size:.75rem;color:#7a9e88;text-align:center;line-height:1.6'>
     🆘 In crisis?<br>
     <b>iCall (India):</b> 9152987821<br>
     <b>Vandrevala:</b> 1860-2662-345<br>
     <b>US Lifeline:</b> 988
-    </div>\"\"\", unsafe_allow_html=True)
+    </div>""", unsafe_allow_html=True)
 
 
 # ── AI RESPONSE ──────────────────────────────────────────────
@@ -165,7 +165,7 @@ if page == "💬 Chat with MindBloom":
     st.markdown('<div class="bloom-subtitle">A safe space to talk, heal, and breathe.</div>', unsafe_allow_html=True)
 
     if not st.session_state.messages:
-        st.markdown(\"\"\"<div class="bloom-card" style="text-align:center;padding:2rem">
+        st.markdown("""<div class="bloom-card" style="text-align:center;padding:2rem">
             <div style="font-size:2rem;margin-bottom:.5rem">🌿</div>
             <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#4caf85;margin-bottom:.5rem">
                 Hello, I'm MindBloom
@@ -173,7 +173,7 @@ if page == "💬 Chat with MindBloom":
             <div style="font-size:.9rem;color:#7a9e88;line-height:1.7">
                 I'm here to listen without judgment.<br>Share what's on your mind — I'm all ears. 💚
             </div>
-        </div>\"\"\", unsafe_allow_html=True)
+        </div>""", unsafe_allow_html=True)
 
     for msg in st.session_state.messages:
         if msg["role"] == "user":
@@ -225,11 +225,11 @@ elif page == "💡 Motivational Quotes":
     st.markdown('<div class="bloom-subtitle">Words that heal, inspire, and remind you of your strength.</div>', unsafe_allow_html=True)
 
     q, a = QUOTES[st.session_state.quote_idx]
-    st.markdown(f\"\"\"<div class="bloom-card" style="text-align:center;padding:2rem 2.5rem">
+    st.markdown(f"""<div class="bloom-card" style="text-align:center;padding:2rem 2.5rem">
         <div style="font-size:2rem;margin-bottom:.8rem">✨</div>
         <div class="quote-card" style="font-size:1.2rem;border:none;background:transparent">"{q}"</div>
         <div class="quote-author" style="font-size:.9rem;text-align:center">— {a}</div>
-    </div>\"\"\", unsafe_allow_html=True)
+    </div>""", unsafe_allow_html=True)
 
     if st.button("✨ New Quote"):
         st.session_state.quote_idx = random.randint(0, len(QUOTES)-1)
@@ -250,7 +250,7 @@ else:
     st.markdown('<div class="bloom-subtitle">Because laughter is the best medicine — scientifically proven! 🌿</div>',
                 unsafe_allow_html=True)
 
-    st.markdown(\"\"\"<div class="bloom-card" style="background:linear-gradient(135deg,rgba(76,175,133,.15),rgba(168,213,181,.2))">
+    st.markdown("""<div class="bloom-card" style="background:linear-gradient(135deg,rgba(76,175,133,.15),rgba(168,213,181,.2))">
         <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.6rem">🌬️ Box Breathing — Try it now</div>
         <div style="font-size:.9rem;color:#4a6e56;line-height:1.8">
             <b>Inhale</b> for 4 counts &nbsp;→&nbsp;
@@ -259,7 +259,7 @@ else:
             <b>Hold</b> for 4 counts.<br>
             Repeat 4 times. Your nervous system will thank you. 🌱
         </div>
-    </div>\"\"\", unsafe_allow_html=True)
+    </div>""", unsafe_allow_html=True)
 
     if st.button("🔄 Shuffle GIFs"):
         st.session_state.media_sel = random.sample(range(len(CUTE_MEDIA)), 6)
@@ -270,12 +270,12 @@ else:
     for i, idx in enumerate(st.session_state.media_sel):
         item = CUTE_MEDIA[idx]
         with cols[i % 3]:
-            st.markdown(f\"\"\"<div class="gif-card">
+            st.markdown(f"""<div class="gif-card">
                 <img src="{item['url']}" alt="{item['label']}"/>
                 <div style="font-size:.82rem;color:#7a9e88;margin-top:.5rem;font-weight:500">{item['label']}</div>
-            </div>\"\"\", unsafe_allow_html=True)
+            </div>""", unsafe_allow_html=True)
 
-    st.markdown(\"\"\"<div class="bloom-card">
+    st.markdown("""<div class="bloom-card">
         <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.6rem">🌱 5-4-3-2-1 Grounding</div>
         <div style="font-size:.9rem;color:#4a6e56;line-height:1.9">
             Notice <b>5 things</b> you can see 👁️<br>
@@ -285,7 +285,7 @@ else:
             Notice <b>1 thing</b> you can taste 👅<br><br>
             <i>This gently pulls you back to the present moment.</i>
         </div>
-    </div>\"\"\", unsafe_allow_html=True)
+    </div>""", unsafe_allow_html=True)
 
     affirmations = [
         "I am enough, exactly as I am. 💚",
@@ -296,9 +296,9 @@ else:
     ]
     st.markdown("### 🌿 Affirmations for Today")
     for aff in affirmations:
-        st.markdown(f\"\"\"<div style='background:linear-gradient(135deg,rgba(76,175,133,.12),rgba(168,213,181,.15));
+        st.markdown(f"""<div style='background:linear-gradient(135deg,rgba(76,175,133,.12),rgba(168,213,181,.15));
             border-radius:12px;padding:.75rem 1.1rem;margin-bottom:.6rem;
-            font-size:.95rem;color:#2d3a32;border-left:3px solid #4caf85'>{aff}</div>\"\"\",
+            font-size:.95rem;color:#2d3a32;border-left:3px solid #4caf85'>{aff}</div>""",
             unsafe_allow_html=True)
 """
 
