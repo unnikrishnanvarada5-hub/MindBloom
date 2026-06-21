@@ -1,4 +1,3 @@
-
 import streamlit as st
 import requests
 import random
@@ -300,7 +299,6 @@ else:
             border-radius:12px;padding:.75rem 1.1rem;margin-bottom:.6rem;
             font-size:.95rem;color:#2d3a32;border-left:3px solid #4caf85'>{aff}</div>""",
             unsafe_allow_html=True)
-"""
 
 with open("mindbloom_app.py", "w") as f:
     f.write(app_code)
