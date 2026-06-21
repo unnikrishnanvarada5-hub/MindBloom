@@ -97,14 +97,20 @@ with st.sidebar:
     </div>""", unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("**🔑 Groq API Key**")
-    key_in = st.text_input("Key", type="password", value=st.session_state.groq_key,
-                           placeholder="gsk_...", label_visibility="collapsed")
-    if key_in:
-        st.session_state.groq_key = key_in
-    st.caption("Free key at [console.groq.com](https://console.groq.com)")
+    # ── AUTOMATED KEY SELECTION ──
+    # Check if a production key is securely stored in Streamlit Cloud Secrets
+    if "GROQ_API_KEY" in st.secrets and st.secrets["GROQ_API_KEY"]:
+        st.session_state.groq_key = st.secrets["GROQ_API_KEY"]
+    else:
+        # Fallback to manual box ONLY if you haven't filled out Streamlit Secrets yet
+        st.markdown("**🔑 Groq API Key**")
+        key_in = st.text_input("Key", type="password", value=st.session_state.groq_key,
+                               placeholder="gsk_...", label_visibility="collapsed")
+        if key_in:
+            st.session_state.groq_key = key_in
+        st.caption("Free key at [console.groq.com](https://console.groq.com)")
+        st.markdown("---")
 
-    st.markdown("---")
     st.markdown("**🗺️ Navigate**")
     page = st.radio("", ["💬 Chat with MindBloom", "💡 Motivational Quotes", "😂 Funny GIF Corner"],
                     label_visibility="collapsed")
@@ -136,10 +142,14 @@ with st.sidebar:
 
 # ── AI RESPONSE ──────────────────────────────────────────────
 def get_ai_response(user_msg):
-    if not st.session_state.groq_key:
+    # 1. Check Streamlit Secrets first, fallback to manual session state
+    api_key = st.secrets.get("GROQ_API_KEY") or st.session_state.get("groq_key")
+    
+    if not api_key:
         return "🔑 Please enter your **Groq API key** in the sidebar. Get a free key at [console.groq.com](https://console.groq.com)."
+        
     try:
-        client = Groq(api_key=st.session_state.groq_key)
+        client = Groq(api_key=api_key)
         msgs = [{"role": "system", "content": SYSTEM_PROMPT}]
         for m in st.session_state.messages[-10:]:
             msgs.append({"role": m["role"], "content": m["content"]})
@@ -156,6 +166,7 @@ def get_ai_response(user_msg):
             return "⏳ Too many requests. Please wait a moment and try again."
         else:
             return f"⚠️ Something went wrong: {err}"
+
 
 
 # ── PAGE: CHAT ───────────────────────────────────────────────
