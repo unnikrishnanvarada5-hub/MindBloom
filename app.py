@@ -71,13 +71,13 @@ CUTE_MEDIA = [
     {"url": "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif", "label": "🐣 Baby chick bounce"},
 ]
 
-SYSTEM_PROMPT = \"\"\"You are MindBloom, a warm, compassionate, and deeply empathetic mental health support companion.
+SYSTEM_PROMPT = """You are MindBloom, a warm, compassionate, and deeply empathetic mental health support companion.
 Your personality: Gentle, non-judgmental, always validating. Use soft calming language. Offer practical coping strategies.
 Sprinkle in breathing exercises, grounding techniques, or mindfulness tips when appropriate.
 Ask thoughtful follow-up questions to understand deeper. If someone seems in crisis, gently encourage professional help
 with hotline numbers (iCall India: 9152987821). Use occasional soft emojis (🌿 💚 🌱) but don't overdo it.
 Keep responses to 3-5 sentences unless detail is needed. Always end with a supportive closing or gentle question.
-You are NOT a replacement for professional therapy.\"\"\"
+You are NOT a replacement for professional therapy."""
 
 if "messages"  not in st.session_state: st.session_state.messages  = []
 if "groq_key"  not in st.session_state: st.session_state.groq_key  = ""
@@ -86,7 +86,7 @@ if "media_sel" not in st.session_state: st.session_state.media_sel = random.samp
 
 # ── SIDEBAR ──────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown(\"\"\"
+    st.markdown("""
     <div style='text-align:center;padding:1rem 0 0.5rem'>
         <span style='font-size:2.5rem'>🌿</span>
         <div style='font-family:Playfair Display,serif;font-size:1.5rem;
@@ -95,7 +95,7 @@ with st.sidebar:
             MindBloom
         </div>
         <div style='font-size:.78rem;color:#7a9e88;margin-top:.2rem'>Your gentle companion 🌱</div>
-    </div>\"\"\", unsafe_allow_html=True)
+    </div>""", unsafe_allow_html=True)
 
     st.markdown("---")
     st.markdown("**🔑 Groq API Key**")
@@ -122,8 +122,8 @@ with st.sidebar:
         "😊 Great":("#e0f2e8", "Wonderful! Spread that warmth around. 🌞"),
     }
     c, m = mood_map[mood]
-    st.markdown(f\"\"\"<div style='background:{c}44;border-left:3px solid #4caf85;
-        border-radius:10px;padding:.7rem 1rem;font-size:.85rem;color:#2d3a32'>{m}</div>\"\"\",
+    st.markdown(f"""<div style='background:{c}44;border-left:3px solid #4caf85;
+        border-radius:10px;padding:.7rem 1rem;font-size:.85rem;color:#2d3a32'>{m}</div>""",
         unsafe_allow_html=True)
 
     st.markdown("---")
